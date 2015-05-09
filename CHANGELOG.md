@@ -1,4 +1,4 @@
-## 0.2.1
+## 0.3.0
 * Added the possibility to use an internal browser to display the docs (at the moment needs an extra package like mark-hahn/web-browser to work)
 
 ## 0.2.0
