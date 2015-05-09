@@ -1,0 +1,16 @@
+{
+  "name": "rust-api-helper",
+  "main": "./lib/rust-api-helper",
+  "version": "0.0.0",
+  "description": "Opens the rust standard api docs for 'use std::' statements",
+  "activationCommands": {
+    "atom-text-editor": "rust-api-helper:trigger"
+  },
+  "repository": "https://github.com/plafue/rust-api-helper",
+  "license": "MIT",
+  "engines": {
+    "atom": ">=0.174.0 <2.0.0"
+  },
+  "dependencies": {
+  }
+}

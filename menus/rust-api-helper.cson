@@ -1,0 +1,22 @@
+# See https://atom.io/docs/latest/hacking-atom-package-word-count#menus for more details
+'context-menu':
+  'atom-text-editor': [
+    {
+      'label': 'Trigger rust-api-helper'
+      'command': 'rust-api-helper:trigger'
+    }
+  ]
+'menu': [
+  {
+    'label': 'Packages'
+    'submenu': [
+      'label': 'rust-api-helper'
+      'submenu': [
+        {
+          'label': 'Trigger'
+          'command': 'rust-api-helper:trigger'
+        }
+      ]
+    ]
+  }
+]
