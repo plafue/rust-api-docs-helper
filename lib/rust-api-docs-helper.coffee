@@ -1,7 +1,7 @@
 {CompositeDisposable}   = require 'atom'
 CratesRegex             = require './crates-regex'
-ImportToPathTransformer = require './import-to-path-transformer'
 DocsResolver            = require './docs-resolver'
+ImportToPathTransformer = require './import-to-path-transformer'
 Shell                   = require 'shell'
 
 module.exports = RustApiDocsHelper =
