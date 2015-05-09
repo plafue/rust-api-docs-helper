@@ -1,7 +1,7 @@
 {
   "name": "rust-api-docs-helper",
   "main": "./lib/rust-api-docs-helper",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Opens the rust standard library docs for 'use std::' statements",
   "activationCommands": {
     "atom-text-editor": "rust-api-docs-helper:trigger"
