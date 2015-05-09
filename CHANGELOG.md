@@ -1,3 +1,6 @@
+## 0.2.1
+* Added the possibility to use an internal browser to display the docs (at the moment needs an extra package like mark-hahn/web-browser to work)
+
 ## 0.2.0
 * Added support for other official crates besides std
 * Now also attempting to load a module or crate, and not just structs, functions and traits
