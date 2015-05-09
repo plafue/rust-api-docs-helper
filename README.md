@@ -1,5 +1,9 @@
-# rust-api-helper package
+# rust-api-docs-helper package
 
-A short description of your package.
+Opens the rust standard library docs in an external browser when using the trigger hotkey on a ```use std::_``` import line.
 
-![A screenshot of your package](https://f.cloud.github.com/assets/69169/2290250/c35d867a-a017-11e3-86be-cd7c5bf3ff9b.gif)
+It attempts to figure out which documentation is available for the import string (e.g. is it a struct, a function or a trait?).
+
+## Future plans
+* Opening the docs for a module or crate.
+* Visual aid (e.g. on-hover "Docs available for this import" hint).
