@@ -14,7 +14,20 @@ module.exports = RustApiHelper =
 
   trigger: ->
     editor = atom.workspace.getActiveTextEditor()
-    possibleUseInLine = editor.lineTextForBufferRow(editor.getLastCursor().getBeginningOfCurrentWordBufferPosition().row ).match(/(std::\S*)[\s;]/)
-    if possibleUseInLine
-      lesscaca = possibleUseInLine[1].replace(/::/g,"/").replace(/(\w*?)$/, "struct.$1.html")
-      Shell.openExternal("http://doc.rust-lang.org/#{lesscaca}")
+    possibleImportInLine = editor.lineTextForBufferRow(editor.getLastCursor().getBeginningOfCurrentWordBufferPosition().row ).match(/(std::\S*)[\s;]/)
+    if possibleImportInLine
+      path = @transformImportToPath(possibleImportInLine)
+      for objectType in ['struct','trait','fn']
+        @sendRequestForObjectType(path, objectType)
+
+  sendRequestForObjectType: (path, objectType) ->
+    p = path.replace(/(\w*?)$/, "#{objectType}.$1.html")
+    req = new XMLHttpRequest();
+    req.addEventListener("loadend",@handleRequestEnd ,false);
+    req.open("HEAD","http://doc.rust-lang.org/#{p}")
+    req.send()
+
+  transformImportToPath: (possibleImportInLine) -> possibleImportInLine[1].replace(/::/g,"/")
+
+  handleRequestEnd: (e) ->
+    if e.currentTarget.status is 200 then Shell.openExternal(e.currentTarget.responseURL)
