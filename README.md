@@ -6,6 +6,7 @@ It attempts to figure out which documentation is available for the import string
 
 ## Future plans
 * ~~Opening the docs for a module or crate.~~
+* ~~Cache previously resolved urls~~
 * Visual aid (e.g. on-hover "Docs available for this import" hint, icon in gutter).
-* Cache previously resolved urls
+* Make cache persistent between sessions
 * Internal browser?
