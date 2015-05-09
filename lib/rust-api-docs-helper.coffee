@@ -1,6 +1,7 @@
 {CompositeDisposable} = require 'atom'
-Shell = require 'shell'
-CratesRegex = require './crates-regex'
+CratesRegex             = require './crates-regex'
+ImportToPathTransformer = require './import-to-path-transformer'
+Shell                   = require 'shell'
 
 module.exports = RustApiDocsHelper =
   subscriptions: null
@@ -15,7 +16,7 @@ module.exports = RustApiDocsHelper =
   trigger: ->
     possibleImportInLine = @searchForPossibleImportLine()
     if possibleImportInLine
-      path = @transformImportToPath(possibleImportInLine)
+      path = ImportToPathTransformer.transform(possibleImportInLine)
       if path in Object.keys @cache
         Shell.openExternal(@cache[path])
       else
@@ -37,11 +38,8 @@ module.exports = RustApiDocsHelper =
     p = path.replace(/(\w*?)$/, resourceEndFormat)
     req = new XMLHttpRequest()
     req.onloadend = @openIfAvailable(path, @cache)
-    req.onerror = @logSilently
     req.open("HEAD","http://doc.rust-lang.org/#{p}")
     req.send()
-
-  transformImportToPath: (possibleImportInLine) -> @hacks possibleImportInLine[1].replace(/::/g,"/")
 
   # Open the docs if the request returned 200
   openIfAvailable: (path, cache) -> (e) ->
@@ -49,14 +47,3 @@ module.exports = RustApiDocsHelper =
       urlFound = e.currentTarget.responseURL
       cache[path] = urlFound
       Shell.openExternal(urlFound)
-
-  # Workarounds for some annoyances
-  hacks: (path) -> @removeCurliesAndOther @rustcSerializeHack path
-
-  # rustc-serialize is kind of special
-  rustcSerializeHack: (path) -> path.replace("rustc_serialize","rustc-serialize/rustc_serialize")
-
-  # This will result in just loading docs of the first import in a curly braces list
-  removeCurliesAndOther: (path) -> path.replace(/\{|\}|,|\s/,"")
-
-  logSilently: (error) -> alert error
