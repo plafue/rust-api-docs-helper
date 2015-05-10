@@ -1,9 +1,8 @@
 {CompositeDisposable}   = require 'atom'
-{$, View}               = require 'atom-space-pen-views'
 CratesRegex             = require './crates-regex'
 DocsResolver            = require './docs-resolver'
+GutterDecorator         = require './gutter-decorator'
 ImportToPathTransformer = require './import-to-path-transformer'
-RsFileWatcher           = require './rs-file-watcher'
 Shell                   = require 'shell'
 
 module.exports = RustApiDocsHelper =
@@ -26,7 +25,7 @@ module.exports = RustApiDocsHelper =
     enableVisualHints:
       type:'boolean'
       description: """
-                      Experimental: Enable to show gutter icons on imports for which docs have bene found. 
+                      Experimental: Enable to show gutter icons on imports for which docs have bene found.
                       There is a bug at the moment that causes errors with this function.
                    """
       default: false
@@ -36,7 +35,9 @@ module.exports = RustApiDocsHelper =
   activate: (state) ->
     @subscriptions = new CompositeDisposable
     @subscriptions.add atom.commands.add 'atom-text-editor', 'rust-api-docs-helper:trigger': => @trigger()
-    if atom.config.get('rust-api-docs-helper.useInternalBrowser') then atom.workspace.onDidOpen(RsFileWatcher.watch())
+    if atom.config.get('rust-api-docs-helper.EnableBackgroundResolving')
+      atom.workspace.observeTextEditors (editor) ->
+        if editor.getPath().match(/(\w*)$/)[1] is 'rs' then new GutterDecorator editor
 
   deactivate: -> @subscriptions.dispose()
 
