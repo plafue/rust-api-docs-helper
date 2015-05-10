@@ -1,3 +1,6 @@
+## 0.4.0
+* Now scanning opened .rs files for imports and displaying a rust logo next to them
+
 ## 0.3.0
 * Added the possibility to use an internal browser to display the docs (at the moment needs an extra package like mark-hahn/web-browser to work)
 
