@@ -1,7 +1,9 @@
+@import "ui-variables";
+
 atom-text-editor::shadow .gutter .line-number {
   &.import-rust-logo {
     background-image: url(atom://rust-api-docs-helper/images/rust-logo.svg);
-    background-size: 15px;
+    background-size: @component-icon-size;
     background-repeat: no-repeat;
     background-position: right;
   }
