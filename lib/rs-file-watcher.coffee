@@ -1,11 +1,16 @@
 CratesRegex             = require './crates-regex'
 DocsResolver            = require './docs-resolver'
 ImportToPathTransformer = require './import-to-path-transformer'
+GutterDecorator         = require './gutter-decorator'
 
 module.exports = RsFileWatcher =
-  watch: (event) ->
+  _self: @
+  watch: () -> (event) ->
     if event?.uri?.match(/(\w*)$/)[1] is 'rs'
-      imports = (line.match CratesRegex for line in event.item.buffer.lines when line.match CratesRegex)
-      transformed = (ImportToPathTransformer.transform i for i in imports)
-      for path in transformed
-        DocsResolver.resolve(path, (url) -> console.log "Added doc url to cache: #{url}")
+      imports = {}
+      for line, lineNr in event.item.buffer.lines
+        possibleMatch = line.match CratesRegex
+        if possibleMatch then imports[lineNr] = possibleMatch
+      for own lineNr, line of imports
+        path = ImportToPathTransformer.transform line
+        DocsResolver.resolve path, GutterDecorator.forLine(lineNr)

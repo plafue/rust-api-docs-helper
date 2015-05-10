@@ -3,9 +3,6 @@
   "main": "./lib/rust-api-docs-helper",
   "version": "0.3.0",
   "description": "Opens the rust standard library docs for quick reference",
-  "activationCommands": {
-    "atom-text-editor": "rust-api-docs-helper:trigger"
-  },
   "repository": "https://github.com/plafue/rust-api-docs-helper",
   "license": "MIT",
   "engines": {

@@ -29,7 +29,7 @@ module.exports = RustApiDocsHelper =
   activate: (state) ->
     @subscriptions = new CompositeDisposable
     @subscriptions.add atom.commands.add 'atom-text-editor', 'rust-api-docs-helper:trigger': => @trigger()
-    if atom.config.get('rust-api-docs-helper.useInternalBrowser') then atom.workspace.onDidOpen(RsFileWatcher.watch)
+    if atom.config.get('rust-api-docs-helper.useInternalBrowser') then atom.workspace.onDidOpen(RsFileWatcher.watch())
 
   deactivate: -> @subscriptions.dispose()
 
