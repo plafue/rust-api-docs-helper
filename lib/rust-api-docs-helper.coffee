@@ -3,6 +3,7 @@
 CratesRegex             = require './crates-regex'
 DocsResolver            = require './docs-resolver'
 ImportToPathTransformer = require './import-to-path-transformer'
+RsFileWatcher           = require './rs-file-watcher'
 Shell                   = require 'shell'
 
 module.exports = RustApiDocsHelper =
@@ -15,12 +16,20 @@ module.exports = RustApiDocsHelper =
                       like mark-hahn/web-browser.
                       """
       default: false
+    EnableBackgroundResolving:
+      type:'boolean'
+      description: """
+                      Disabling this will only resolve docs URLs on demand (ie. via hotkey),
+                      thus reducing cosiderably the amount of requests done in the background.
+                   """
+      default: true
 
   subscriptions: null
 
   activate: (state) ->
     @subscriptions = new CompositeDisposable
     @subscriptions.add atom.commands.add 'atom-text-editor', 'rust-api-docs-helper:trigger': => @trigger()
+    if atom.config.get('rust-api-docs-helper.useInternalBrowser') then atom.workspace.onDidOpen(RsFileWatcher.watch)
 
   deactivate: -> @subscriptions.dispose()
 
