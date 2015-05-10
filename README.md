@@ -7,5 +7,6 @@ Check out the [demo](https://github.com/plafue/rust-api-docs-helper/blob/master/
 * Can display the docs within atom if an internal browser (e.g. [mark-hahn/web-browser](https://atom.io/packages/web-browser)) is installed.
 
 ## Future plans
-* Visual aid (e.g. on-hover "Docs available for this import" hint, icon in gutter, or similar).
+* Scan file for imports so that we can...
+* ...add a visual aid (e.g. on-hover "Docs available for this import" hint, icon in gutter, or similar).
 * Make cache persistent between sessions (won't work until atom/atom#3695 is fixed).
