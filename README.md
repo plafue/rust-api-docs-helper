@@ -8,4 +8,4 @@ Check out the [demo](./demo/demo.mp4).
 
 ## Future plans
 * Visual aid (e.g. on-hover "Docs available for this import" hint, icon in gutter, or similar).
-* Make cache persistent between sessions.
+* Make cache persistent between sessions (won't work until atom/atom#3695 is fixed).
