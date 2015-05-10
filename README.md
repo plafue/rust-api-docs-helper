@@ -1,6 +1,6 @@
 # rust-api-docs-helper package
 
-Check out the [demo](./demo/demo.mp4).
+Check out the [demo](https://github.com/plafue/rust-api-docs-helper/blob/master/demo/demo.mp4?raw=true).
 
 ## What this package can do
 * Opening (via key binding) the docs for a module, crate, trait, function or struct from the official crates listed under [The Rust Standard Library](http://doc.rust-lang.org/std/) (the cursor must be positioned in the corresponding ``use xxx::xxx`` line).
