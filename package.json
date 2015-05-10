@@ -1,7 +1,7 @@
 {
   "name": "rust-api-docs-helper",
   "main": "./lib/rust-api-docs-helper",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "Opens the rust standard library docs for quick reference",
   "repository": "https://github.com/plafue/rust-api-docs-helper",
   "license": "MIT",
