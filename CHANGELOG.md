@@ -1,3 +1,6 @@
+## 0.4.1
+* Disabling gutter logo per default due to breaking bug
+
 ## 0.4.0
 * Now scanning opened .rs files for imports and displaying a rust logo next to them
 
