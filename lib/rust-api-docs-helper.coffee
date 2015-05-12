@@ -15,7 +15,7 @@ module.exports = RustApiDocsHelper =
                       like mark-hahn/web-browser.
                       """
       default: false
-    EnableBackgroundResolving:
+    enableBackgroundResolving:
       type:'boolean'
       description: """
                       Disabling this will only resolve docs URLs on demand (ie. via hotkey),
@@ -35,9 +35,14 @@ module.exports = RustApiDocsHelper =
   activate: (state) ->
     @subscriptions = new CompositeDisposable
     @subscriptions.add atom.commands.add 'atom-text-editor', 'rust-api-docs-helper:trigger': => @trigger()
-    if atom.config.get('rust-api-docs-helper.EnableBackgroundResolving')
+    if atom.config.get('rust-api-docs-helper.enableBackgroundResolving')
       atom.workspace.observeTextEditors (editor) ->
-        if editor.getPath()?.match(/(\w*)$/)[1] is 'rs' then new GutterDecorator editor
+        if editor.getPath()?.match(/(\w*)$/)[1] is 'rs'
+          editor.addGutter
+            name: 'rust-api-docs-helper'
+            priority: 2
+            visible: atom.config.get('rust-api-docs-helper.enableVisualHints')
+          new GutterDecorator editor
 
   deactivate: -> @subscriptions.dispose()
 
