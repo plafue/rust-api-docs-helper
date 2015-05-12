@@ -7,7 +7,7 @@ module.exports = class GutterDecorator
   constructor: (@editor) ->
     @subscriptions = new CompositeDisposable()
     @markers = []
-    
+
     @subscriptions.add @editor.onDidStopChanging @updateMarkers
     @subscriptions.add @editor.onDidChangePath @updateMarkers
     @subscriptions.add @editor.onDidDestroy =>
@@ -17,16 +17,14 @@ module.exports = class GutterDecorator
   updateMarkers: =>
     return if @editor.isDestroyed()
     @removeDecorations()
-    imports = {}
-    for line, lineNr in @editor.buffer.lines
-      possibleMatch = line.match CratesRegex
-      if possibleMatch then imports[lineNr] = possibleMatch
-    for own lineNr, line of imports
-      path = ImportToPathTransformer.transform line
-      DocsResolver.resolve path, @decorateLine(lineNr)
-
-  decorateLine : (lineNr) => (url) =>
     if atom.config.get('rust-api-docs-helper.enableVisualHints')
+      for line, lineNr in @editor.buffer.lines
+        possibleMatch = line.match CratesRegex
+        if possibleMatch
+          path = ImportToPathTransformer.transform possibleMatch
+          DocsResolver.resolve path, @decorateLine lineNr
+
+  decorateLine : (lineNr) -> (url) =>
       marker = @editor.markBufferRange([[lineNr, 0], [lineNr, 0]], invalidate: 'never')
       @editor.decorateMarker(marker, type : 'line-number', class : 'import-rust-logo')
       @markers.push(marker)

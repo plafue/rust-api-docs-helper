@@ -8,7 +8,3 @@
 
 ## Future plans
 * Make cache persistent between sessions (won't work until atom/atom#3695 is fixed).
-
-
-## Known bugs
-* At the moment displaying the icons in the gutter brings the (very undesirable) side effect that the imports may not be editable anymore. Any help is appreciated on debugging this problem!
