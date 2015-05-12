@@ -37,7 +37,7 @@ module.exports = RustApiDocsHelper =
     @subscriptions.add atom.commands.add 'atom-text-editor', 'rust-api-docs-helper:trigger': => @trigger()
     if atom.config.get('rust-api-docs-helper.EnableBackgroundResolving')
       atom.workspace.observeTextEditors (editor) ->
-        if editor.getPath().match(/(\w*)$/)[1] is 'rs' then new GutterDecorator editor
+        if editor.getPath()?.match(/(\w*)$/)[1] is 'rs' then new GutterDecorator editor
 
   deactivate: -> @subscriptions.dispose()
 
