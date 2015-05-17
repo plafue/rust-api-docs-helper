@@ -1,3 +1,7 @@
+## 0.4.4
+* Gutter icons work properly now
+* Gutter icons are now clickable
+
 ## 0.4.1
 * Disabling gutter logo per default due to breaking bug
 
