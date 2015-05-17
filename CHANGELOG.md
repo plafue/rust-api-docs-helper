@@ -1,3 +1,6 @@
+## 0.5.1
+* Bump version
+
 ## 0.4.4
 * Gutter icons work properly now
 * Gutter icons are now clickable
