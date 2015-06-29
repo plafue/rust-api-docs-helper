@@ -25,7 +25,7 @@ module.exports = RustApiDocsHelper =
     enableVisualHints:
       type:'boolean'
       description: """
-                      Enable to show gutter icons on imports for which docs have bene found.
+                      Enable to show gutter icons on imports for which docs have been found.
                       There is a bug at the moment that causes errors with this function.
                    """
       default: true
