@@ -32,7 +32,7 @@ module.exports = RustApiDocsHelper =
     rustReleaseChannel:
       type:'string'
       description: """
-                      Identifies which release channel to when providing documentation.
+                      Identifies which release channel to use when providing documentation.
                    """
       default: 'stable'
       enum: ['stable', 'beta', 'nightly']
