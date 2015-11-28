@@ -15,10 +15,11 @@ module.exports = DocsResolver =
   assertModulePageAvailability: (path, callback) -> @assertPageAvailability(path, "$1/index.html", callback)
 
   assertPageAvailability: (path, resourceEndFormat, callback) ->
+    c = atom.config.get('rust-api-docs-helper.rustReleaseChannel')
     p = path.replace(/(\w*?)$/, resourceEndFormat)
     req = new XMLHttpRequest()
     req.onloadend = @onLoadEnd(path, @cache, callback)
-    req.open("HEAD","http://doc.rust-lang.org/#{p}")
+    req.open("HEAD","http://doc.rust-lang.org/#{c}/#{p}")
     req.send()
 
   onLoadEnd: (path, cache, callback) -> (e) ->
