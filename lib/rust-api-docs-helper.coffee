@@ -29,6 +29,13 @@ module.exports = RustApiDocsHelper =
                       There is a bug at the moment that causes errors with this function.
                    """
       default: true
+    rustReleaseChannel:
+      type:'string'
+      description: """
+                      Identifies which release channel to use when providing documentation.
+                   """
+      default: 'stable'
+      enum: ['stable', 'beta', 'nightly']
 
   subscriptions: null
 
