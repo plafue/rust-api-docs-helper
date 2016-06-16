@@ -8,7 +8,7 @@ module.exports = DocsResolver =
       @searchMathingDocs(path, callback)
 
   searchMathingDocs: (path, callback) ->
-    for objectType in ['struct','trait','fn']
+    for objectType in ['type','enum','struct','trait','fn']
       @assertPageAvailability(path, "#{objectType}.$1.html", callback)
     @assertModulePageAvailability(path, callback)
 
