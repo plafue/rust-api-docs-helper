@@ -7,6 +7,13 @@ Shell                   = require 'shell'
 
 module.exports = RustApiDocsHelper =
   config:
+    rustChannel:
+      type: 'string'
+      description: """
+                      The distribution channel from which the document will be searched
+                   """
+      enum: ['stable','beta','nightly']
+      default: 'stable'
     useInternalBrowser:
       type:'boolean'
       description: """If set, a URL open request will be sent, that will attempt to open the docs URL within atom,
