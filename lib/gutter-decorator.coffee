@@ -19,7 +19,8 @@ module.exports = class GutterDecorator
     return if @editor.isDestroyed()
     @removeDecorations()
     if atom.config.get('rust-api-docs-helper.enableVisualHints')
-      for line, lineNr in @editor.buffer.lines
+      lines = @editor.getBuffer().getLines()
+      for line, lineNr in lines
         possibleMatch = line.match CratesRegex
         if possibleMatch
           path = ImportToPathTransformer.transform possibleMatch
